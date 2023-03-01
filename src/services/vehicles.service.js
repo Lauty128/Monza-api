@@ -33,14 +33,16 @@ class vehiclesClass{
             await vehicle.save()
             return { 
                 msg:"Se subio el vehiculo correctamente",
-                status:200
+                status:200,
+                type:"OK"
             }
         }
         catch(err){
             return { 
                 msg:"Ocurrio un error mientras se subia el vehiculo",
                 err,
-                status:404
+                status:404,
+                type:"ERROR"
             }
         }
     }
@@ -65,8 +67,6 @@ class vehiclesClass{
     }
 
     modifyVehicle = async(id, data) => {
-        console.log(id);
-        console.log(data);
         try{
             const vehicle = await this.vehicles.updateOne({_id:id}, data)
             await vehicle.save()

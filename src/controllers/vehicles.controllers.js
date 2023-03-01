@@ -31,7 +31,6 @@
 
     //- POST
     const newVehicle = async (req,res) => {
-        // console.log(req.files);
         const image = await cloudinary.upload(req.files.image[0].path)
 
         let images = []
@@ -39,7 +38,8 @@
             const data = await cloudinary.upload(req.files.images[index].path)
             images.push(data.secure_url)
         }
-
+        
+        req.body.traction = req.body.traction || 'Normal'
         const body = {...req.body, 
             image : image.secure_url, 
             images}
