@@ -84,7 +84,14 @@
             downloadFile()
             
             //-- Delete file
-            fs.rm(pathExcel)
+            fs.access(pathExcel, err=>{
+                if(!err){
+                    fs.unlink(pathExcel, err=>{
+                        if(err) console.log('Ocurrio un error');
+                    })
+                }
+                else console.log('Ocurrio un error')
+            })
 
             // res.json({msg:"Archivo descargado correctamente", status:200})
         })
