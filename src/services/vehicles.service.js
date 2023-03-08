@@ -8,7 +8,7 @@ class vehiclesClass{
         this.vehicles = vehiclesModel;
     }
 
-    getData = async(find, sort, limit, page) => {
+    getData = async(find={}, sort={}, limit=6, page=1) => {
         // Get all the vehicles
         const data = await this.vehicles.paginate( find, 
         { sort , limit , page })
@@ -33,16 +33,14 @@ class vehiclesClass{
             await vehicle.save()
             return { 
                 msg:"Se subio el vehiculo correctamente",
-                status:200,
-                type:"OK"
+                status:201
             }
         }
-        catch(err){
+        catch(error){
             return { 
                 msg:"Ocurrio un error mientras se subia el vehiculo",
-                err,
-                status:404,
-                type:"ERROR"
+                error,
+                status:404
             }
         }
     }
@@ -54,13 +52,13 @@ class vehiclesClass{
             await vehicle.save()
             return { 
                 msg:"Se elimino el vehiculo correctamente",
-                status:200
+                status:201
             }
         }
-        catch(err){
+        catch(error){
             return { 
                 msg:"Ocurrio un error mientras se eliminaba el vehiculo",
-                err,
+                error,
                 status:404
             }
         }
@@ -69,16 +67,15 @@ class vehiclesClass{
     modifyVehicle = async(id, data) => {
         try{
             const vehicle = await this.vehicles.updateOne({_id:id}, data)
-            await vehicle.save()
             return { 
                 msg:"Se actualizo el vehiculo correctamente",
-                status:200
+                status:201
             }
         }
-        catch(err){
+        catch(error){
             return { 
                 msg:"Ocurrio un error mientras se actualizaba el vehiculo",
-                err,
+                error,
                 status:404
             }
         }

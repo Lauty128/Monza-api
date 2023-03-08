@@ -23,7 +23,7 @@ const vehicleSchema = new Schema({
     transmission: { required:true, type:String },
     date:{ required:true, type:Schema.Types.Date, default: date },
     sale_date:{ required:false, type:Schema.Types.Date, default: undefined },
-    offer_price: { required:false, type:Number }
+    offer_price: { required:false, type:Number, default: undefined }
 }) 
 
 vehicleSchema.plugin(paginate)

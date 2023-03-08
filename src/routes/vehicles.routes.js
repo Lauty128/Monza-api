@@ -15,6 +15,7 @@ import vehiclesControllers from "../controllers/vehicles.controllers.js"; // thi
 //--- Routes
 //- GET
 router.get("/", vehiclesControllers.getAll)
+router.get('/xlsx', vehiclesControllers.generateXlsx)
 router.get("/:id", vehiclesControllers.getOne)
 
 //- POST
